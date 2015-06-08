@@ -1,0 +1,58 @@
+import java.util.*;
+import java.io.*;
+
+public class OutletTest{
+    private ArrayList<Outlet> outlets;
+
+    private final int MAXIMUM_NUMBER_OF_OUTLETS = 3;
+    public OutletTest()
+    {
+        outlets = new ArrayList<Outlet>();	
+    }
+
+    public boolean loadOutlets()
+    {
+        String file = "input.txt";
+        try
+        {
+            FileReader filename = new FileReader(file); 
+            Scanner input = new Scanner(filename);
+
+            while (input.hasNextLine())
+            {
+                if (outlets.size() >=	 MAXIMUM_NUMBER_OF_OUTLETS)
+                    break;
+                String a = input.nextLine();
+                String b = input.nextLine();
+                String c = input.nextLine();
+                System.out.println(a + " " + b + " " + c);
+
+                outlets.add(new Outlet(a,b,c));
+
+            }
+
+            filename.close();
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("Error has occured");
+            return false;
+        }
+        catch(IOException e)
+        {
+            System.out.println("Error has occured");
+            return false;
+        }
+        finally
+        {
+
+        }
+
+        for (int i = 0; i < outlets.size();i++)
+        {
+            outlets.get(i).display();
+        }
+
+        return true;
+    }
+}
